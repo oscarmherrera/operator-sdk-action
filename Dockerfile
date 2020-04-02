@@ -1,4 +1,4 @@
-ARG RELEASE_VERSION=v0.11.0
+ARG RELEASE_VERSION=v0.16.0
 
 FROM docker:stable
 
@@ -13,7 +13,7 @@ ENV RELEASE_VERSION=${RELEASE_VERSION} \
 
 RUN apk update -q && \
     apk upgrade -q && \
-    apk --no-cache -q add bash build-base curl git go mercurial
+    apk --no-cache -q add bash build-base curl git go
 
 COPY entrypoint.sh /entrypoint.sh
 

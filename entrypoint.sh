@@ -4,36 +4,26 @@ set -e
 
 unset GOROOT
 
-IMAGE=$1
-TAG=$2
-DIR=$3
+IMAGE="$1"
+TAG="${2:-latest}"
+DIR="${3:-$PWD}"
+ARGS="${4}"
 
 if [ -z "$IMAGE" ]; then
-  echo 'Required image name parameter'
+  echo 'Image name is required'
   exit 1
 fi
 
-if [ -z "$TAG" ]; then
-  echo 'INFO: Image tag parameter not present. Defaulting to latest'
-  TAG="latest"
-fi
+echo "INFO: Using operator-sdk version $RELEASE_VERSION"
+echo "INFO: Building in directory $DIR"
+echo "INFO: Building image $IMAGE/$TAG"
 
-if [ -z "$DIR" ]; then
-  echo 'INFO: dirPath parameter not present. Defaulting PWD'
-  DIR="$(pwd)"
-fi
+cd "$DIR"
 
-if [ -z "$RELEASE_VERSION" ]; then
-  echo 'INFO: operator-sdk release version is not set. Defaulting to v0.11.0'
-  RELEASE_VERSION="v0.11.0"
-fi
+curl -L -o /usr/local/bin/operator-sdk "https://github.com/operator-framework/operator-sdk/releases/download/${RELEASE_VERSION}/operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu"
 
-cd "$DIR" || exit 1
+chmod +x /usr/local/bin/operator-sdk
 
-curl -L -o /operator-sdk "https://github.com/operator-framework/operator-sdk/releases/download/${RELEASE_VERSION}/operator-sdk-${RELEASE_VERSION}-x86_64-linux-gnu"
-
-chmod +x /operator-sdk
-
-/operator-sdk build "$IMAGE:$TAG" --image-builder="docker" --go-build-args="-a -installsuffix cgo -ldflags=-extldflags=-static"
+operator-sdk build "$IMAGE:$TAG" $ARGS
 
 echo ::set-output name=image::"$IMAGE:$TAG"
