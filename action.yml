@@ -24,7 +24,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - ${{ inputs.image }}
-    - ${{ inputs.tag }}
-    - ${{ inputs.dirPath }}
-    - ${{ inputs.args }}
+    - "${{ inputs.image }}"
+    - "${{ inputs.tag }}"
+    - "${{ inputs.dirPath }}"
+    - "${{ inputs.args }}"

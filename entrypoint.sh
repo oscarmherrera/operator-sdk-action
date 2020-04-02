@@ -24,6 +24,7 @@ curl -L -o /usr/local/bin/operator-sdk "https://github.com/operator-framework/op
 
 chmod +x /usr/local/bin/operator-sdk
 
+echo "running operator-sdk build with extra args $ARGS"
 operator-sdk build "$IMAGE:$TAG" $ARGS
 
 echo ::set-output name=image::"$IMAGE:$TAG"
