@@ -27,4 +27,4 @@ runs:
     - "${{ inputs.image }}"
     - "${{ inputs.tag }}"
     - "${{ inputs.dirPath }}"
-    - "${{ inputs.args }}"
+    - "${{ inputs.goBuildArgs }}"

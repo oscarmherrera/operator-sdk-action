@@ -7,7 +7,7 @@ unset GOROOT
 IMAGE="$1"
 TAG="${2:-latest}"
 DIR="${3:-$PWD}"
-shift 3
+EXTRA_ARGS="${4}"
 
 if [ -z "$IMAGE" ]; then
   echo 'Image name is required'
@@ -24,7 +24,11 @@ curl -L -o /usr/local/bin/operator-sdk "https://github.com/operator-framework/op
 
 chmod +x /usr/local/bin/operator-sdk
 
+if [ -n "$EXTRA_ARGS" ]; then
+  EXTRA_FLAGS="--go-build-args"
+fi
+
 echo "running operator-sdk build with extra args $*"
-operator-sdk build "$IMAGE:$TAG" "$@"
+operator-sdk build "$IMAGE:$TAG" "$EXTRA_FLAGS" "$EXTRA_ARGS"
 
 echo ::set-output name=image::"$IMAGE:$TAG"
