@@ -14,9 +14,12 @@ inputs:
   dirPath:
     description: 'Project structure requires build/Dockerfile'
     required: false
+  args:
+    description: 'Additional arguments passed to operator-sdk build'
+    required: false
 outputs:
   image:
-    description: 'Built docker image'
+    description: 'Built docker image name'
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -24,3 +27,4 @@ runs:
     - ${{ inputs.image }}
     - ${{ inputs.tag }}
     - ${{ inputs.dirPath }}
+    - ${{ inputs.args }}
