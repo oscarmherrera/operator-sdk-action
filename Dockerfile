@@ -1,9 +1,9 @@
-ARG RELEASE_VERSION=v0.16.0
+ARG RELEASE_VERSION=v0.17.0
 
 FROM docker:stable
 
 LABEL "name"="Operator-SDK Docker Action" \
-    "maintainer"="Michael Fornaro <michaelfornaro@gmail.com>" \
+    "maintainer"="Daniel Ramirez <dxas90@gmail.com>" \
     "version"="1.0.0"
 
 ENV RELEASE_VERSION=${RELEASE_VERSION} \
