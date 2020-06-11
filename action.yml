@@ -1,6 +1,6 @@
-name: 'Operator-SDK Action'
+name: 'Operator-SDK K8s Action'
 description: 'GitHub Actions for Operator-SDK build'
-author: 'Michael Fornaro <michaelfornaro@gmail.com>'
+author: 'Daniel Ramirez <dxas90@gmail.com>'
 branding:
   icon: 'package'
   color: 'blue'
