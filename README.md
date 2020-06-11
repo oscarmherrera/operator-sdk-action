@@ -33,7 +33,7 @@ Built image name
 ## Example usage
 
 ```yaml
-uses: hensur/operator-sdk-github-action
+uses: dxas90/operator-sdk-github-action
 with:
     image: "example"
     tag: 1.0
