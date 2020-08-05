@@ -1,6 +1,6 @@
-name: 'Operator-SDK K8s Action'
+name: 'Operator-SDK Action'
 description: 'GitHub Actions for Operator-SDK build'
-author: 'Daniel Ramirez <dxas90@gmail.com>'
+author: 'Oscar M Herrera <oscar@kss-inc.com>'
 branding:
   icon: 'package'
   color: 'blue'
@@ -17,6 +17,9 @@ inputs:
   args:
     description: 'Additional arguments passed to operator-sdk build'
     required: false
+  sdkVersion:
+    description: "version of the SDK to use"
+    requied: false
 outputs:
   image:
     description: 'Built docker image name'
@@ -28,3 +31,4 @@ runs:
     - ${{ inputs.tag }}
     - ${{ inputs.dirPath }}
     - ${{ inputs.args }}
+    - ${{ inputs.sdkVersion }}
