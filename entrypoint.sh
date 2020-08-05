@@ -8,7 +8,7 @@ IMAGE="$1"
 TAG="${2:-latest}"
 DIR="${3:-$PWD}"
 ARGS="${4}"
-RELEASE_VERSION:"${5:-v0.19.2}"
+RELEASE_VERSION="${5:-v0.19.2}"
 
 if [ -z "$IMAGE" ]; then
   echo 'Image name is required'
